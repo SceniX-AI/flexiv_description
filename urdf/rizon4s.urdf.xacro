@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rizon">
+  <!-- 'rizon_type' values: Rizon4, Rizon4s, Rizon10, Rizon10s -->
+  <xacro:arg name="rizon_type" default="Rizon4s" />
+
+  <!-- import main macro -->
+  <xacro:include filename="$(find flexiv_description)/urdf/rizon4s_macro.xacro" />
+
+  <!-- parameters -->
+  <xacro:arg name="load_gripper" default="false" />
+  <xacro:arg name="gripper_name" default="Flexiv-GN01" />
+  
+  <xacro:arg name="robot_name"                    default="arm"/> <!-- defalut values are nomial -->
+  <xacro:arg name="base_xyz"                      default="0.0 0.0 0.0"/> <!-- defalut values are nomial -->
+  <xacro:arg name="base_rpy"                      default="0.0 0.0 0.0"/> <!-- defalut values are nomial -->
+  <xacro:arg name="camera_xyz"                    default="-0.08 0.0 0.05"/> <!-- defalut values are nomial -->
+  <xacro:arg name="camera_rpy"                    default="-0.17453293 0.0 -1.57079633"/> <!-- defalut values are nomial -->
+  
+  <xacro:rizon4s_robot
+    robot_name="$(arg robot_name)"
+    base_xyz="$(arg base_xyz)"
+    base_rpy="$(arg base_rpy)"
+    camera_xyz="$(arg camera_xyz)"
+    camera_rpy="$(arg camera_rpy)"
+    load_gripper="$(arg load_gripper)"
+    gripper_name="$(arg gripper_name)"
+    >
+  </xacro:rizon4s_robot>
+
+</robot>

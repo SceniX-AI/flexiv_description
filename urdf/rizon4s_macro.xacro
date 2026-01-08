@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="rizon4s_robot"
+    params="
+    robot_name
+    base_xyz
+    base_rpy
+    camera_xyz
+    camera_rpy
+    load_gripper:=false
+    gripper_name:='Flexiv-GN01'
+    ">
+
+    <!-- Variable binding -->
+    <xacro:property name="prefix" value="${robot_name + '/' if robot_name else ''}" />
+    <xacro:property name="camera_prefix" value="${robot_name + '_' if robot_name else ''}"/>
+
+    <!-- Load gripper -->
+    <xacro:if value="${load_gripper and gripper_name=='Flexiv-GN01'}">
+      <xacro:include filename="$(find flexiv_description)/urdf/grav_macro.xacro" />
+      <xacro:flexiv_GN01 prefix="${prefix}" mesh_prefix_path="package://flexiv_description/" />
+    </xacro:if>
+    
+    <!-- Rizon4s -->
+    <xacro:include filename="$(find flexiv_description)/urdf/rizon4s_joints_links.xacro" />
+    <xacro:rizon4s_joints_links 
+      rizon_type="Rizon4s" 
+      prefix="${prefix}" 
+      camera_prefix="${camera_prefix}" 
+      base_xyz="${base_xyz}" 
+      base_rpy="${base_rpy}" 
+      camera_xyz="${camera_xyz}"
+      camera_rpy="${camera_rpy}" 
+      load_mounted_ft_sensor="false"
+      mesh_prefix_path="package://flexiv_description/" />
+
+  </xacro:macro>
+
+
+
+</robot>
