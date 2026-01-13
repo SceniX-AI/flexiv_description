@@ -47,7 +47,7 @@ def launch_setup(context, *args, **kwargs):
             " ",
             f"load_gripper:={load_gripper} ",
             f"gripper_name:={gripper_name} ",
-            f"robot_name:={robot_name} ",
+            f"robot_name:=/flexiv/{robot_name} ",
             f'base_xyz:="{base_xyz}" ',
             f'base_rpy:="{base_rpy}" ',
             f'camera_xyz:="{camera_xyz}" ',
